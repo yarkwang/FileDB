@@ -1,7 +1,6 @@
 package com.example.weiwang7.filedb;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,9 @@ import java.util.ArrayList;
  */
 
 class MyAdapter extends BaseAdapter{
+    private static LayoutInflater inflater = null;
     private Context context;
     private ArrayList<FileRecord> files;
-    private static LayoutInflater inflater=null;
 
     MyAdapter(Context context, ArrayList<FileRecord> files){
         this.context=context;
@@ -43,25 +42,24 @@ class MyAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView==null)
-            convertView=inflater.inflate(R.layout.layout_grid_item, null);
+            convertView = inflater.inflate(R.layout.layout_grid_item, parent, false);
 
-        TextView fileNameTextView=(TextView)convertView.findViewById(R.id.tv_file_name);
-        TextView fileExtensionTextView=(TextView)convertView.findViewById(R.id.tv_file_extension);
-        TextView md5TextView=(TextView)convertView.findViewById(R.id.tv_md5);
-        TextView positionTextView=(TextView)convertView.findViewById(R.id.tv_postion);
-        TextView lengthTextView=(TextView)convertView.findViewById(R.id.tv_length);
-        TextView sizeTextView=(TextView)convertView.findViewById(R.id.tv_size);
-        TextView keywordTextView=(TextView)convertView.findViewById(R.id.tv_keyword);
+        TextView fileNameTextView = convertView.findViewById(R.id.tv_file_name);
+        TextView fileExtensionTextView = convertView.findViewById(R.id.tv_file_extension);
+        TextView md5TextView = convertView.findViewById(R.id.tv_md5);
+        TextView positionTextView = convertView.findViewById(R.id.tv_postion);
+        TextView lengthTextView = convertView.findViewById(R.id.tv_length);
+        TextView sizeTextView = convertView.findViewById(R.id.tv_size);
+        TextView keywordTextView = convertView.findViewById(R.id.tv_keyword);
 
-        FileRecord fr=new FileRecord();
-        fr=files.get(position);
-        fileNameTextView.setText("File name:  " + fr.getFile_name());
-        fileExtensionTextView.setText("File extension:  " + fr.getFile_extension());
-        md5TextView.setText("MD5:  " + fr.getMd5());
-        positionTextView.setText("Position:  " + fr.getPosition());
-        lengthTextView.setText("Length:  " + fr.getLength());
-        sizeTextView.setText("Size:  " + fr.getSize());
-        keywordTextView.setText("Keyword:  " + fr.getKeyword());
+        FileRecord fr = files.get(position);
+        fileNameTextView.setText(context.getString(R.string.label_fileName, fr.getFile_name()));
+        fileExtensionTextView.setText(context.getString(R.string.label_fileExtension, fr.getFile_extension()));
+        md5TextView.setText(context.getString(R.string.label_md5, fr.getMd5()));
+        positionTextView.setText(context.getString(R.string.label_position, fr.getPosition()));
+        lengthTextView.setText(context.getString(R.string.label_length, fr.getLength()));
+        sizeTextView.setText(context.getString(R.string.label_size, fr.getSize()));
+        keywordTextView.setText(context.getString(R.string.label_keyword, fr.getKeyword()));
         return convertView;
     }
 }
