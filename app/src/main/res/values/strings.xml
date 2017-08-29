@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FileDB</string>
+    <string name="hint">输入关键字</string>
+    <string name="label_fileName">File Name:  </string>
+    <string name="label_fileExtension">File Extension:  </string>
+    <string name="label_md5">MD5:  </string>
+    <string name="label_position">Position:  </string>
+    <string name="label_length">Length:  </string>
+    <string name="label_size">Size:  </string>
+    <string name="label_keyword">Keyword:  </string>
+</resources>
