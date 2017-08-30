@@ -7,14 +7,16 @@
     tools:context="com.example.weiwang7.filedb.MainActivity">
 
     <EditText
+        android:id="@+id/myFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/myFilter"
         android:hint="@string/hint"/>
 
     <ListView
-        android:layout_height="match_parent"
+        android:id="@+id/lv_file"
         android:layout_width="match_parent"
-        android:id="@+id/lv_file" />
+        android:layout_height="match_parent"
+        android:divider="@color/colorPrimaryDark"
+        android:dividerHeight="1dp" />
 
 </LinearLayout>
