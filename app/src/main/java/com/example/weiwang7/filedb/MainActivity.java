@@ -1,50 +1,39 @@
 package com.example.weiwang7.filedb;
 
-import android.content.Context;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ListView listView;
-    ArrayList<FileRecord> files;
-    MyAdapter adapter;
+    private MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try{
-            copyDatabase();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        copyDatabase();
 
-        listView=(ListView) findViewById(R.id.lv_file);
+        ListView listView = (ListView) findViewById(R.id.lv_file);
 
         DatabaseHelper databaseHelper=new DatabaseHelper(MainActivity.this);
-        files=new ArrayList<>();
+        ArrayList<FileRecord> files;
 
-        files=databaseHelper.getAllFiles();
+        files = databaseHelper.getAllFiles();
         adapter=new MyAdapter(MainActivity.this, files);
         listView.setAdapter(adapter);
 
@@ -62,13 +51,13 @@ public class MainActivity extends AppCompatActivity {
         EditText myFilter=(EditText)findViewById(R.id.myFilter);
         myFilter.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
             }
 
             @Override
@@ -97,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
-    public void copyDatabase() throws IOException{
+    private void copyDatabase() {
         String package_name= getApplicationContext().getPackageName();
         String DB_PATH= getApplicationContext().getFilesDir().getPath() + "data/"+package_name+"/databases/";
         String DB_NAME="file_db.db";
@@ -107,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             File dbFile=new File(DB_PATH);
             if(dbFile.mkdirs()){
                 Log.d( null, "new data folder is created");
-            };
+            }
 
             String outputFileName=DB_PATH + DB_NAME;
             OutputStream outputStream=new FileOutputStream(outputFileName);

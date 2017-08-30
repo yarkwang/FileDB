@@ -5,44 +5,44 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_file_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_file_name"
         android:text="@string/label_fileName"/>
 
     <TextView
+        android:id="@+id/tv_file_extension"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_file_extension"
         android:text="@string/label_fileExtension"/>
 
     <TextView
+        android:id="@+id/tv_md5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_md5"
         android:text="@string/label_md5"/>
 
     <TextView
+        android:id="@+id/tv_position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_postion"
         android:text="@string/label_position"/>
 
     <TextView
+        android:id="@+id/tv_length"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_length"
         android:text="@string/label_length"/>
 
     <TextView
+        android:id="@+id/tv_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_size"
         android:text="@string/label_size"/>
 
     <TextView
+        android:id="@+id/tv_keyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_keyword"
         android:text="@string/label_keyword"/>
 </LinearLayout>

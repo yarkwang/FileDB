@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,14 +15,16 @@ import java.util.ArrayList;
  *  Created by wei.wang7 on 2017/8/18.
  */
 
-class MyAdapter extends BaseAdapter{
+class MyAdapter extends BaseAdapter implements Filterable {
     private static LayoutInflater inflater = null;
-    private Context context;
+    private final Context context;
+    private final ArrayList<FileRecord> storedFiles;
     private ArrayList<FileRecord> files;
 
     MyAdapter(Context context, ArrayList<FileRecord> files){
         this.context=context;
         this.files=files;
+        this.storedFiles = new ArrayList<>(files);
         inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -61,5 +65,42 @@ class MyAdapter extends BaseAdapter{
         sizeTextView.setText(context.getString(R.string.label_size, fr.getSize()));
         keywordTextView.setText(context.getString(R.string.label_keyword, fr.getKeyword()));
         return convertView;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                files = (ArrayList<FileRecord>) results.values;
+                notifyDataSetChanged();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();
+
+                if (constraint == null || constraint.length() == 0) {
+                    results.values = storedFiles;
+                    results.count = storedFiles.size();
+                } else {
+                    ArrayList<FileRecord> filteredFiles = new ArrayList<>();
+
+                    constraint = constraint.toString().toLowerCase();
+                    for (int i = 0; i < storedFiles.size(); i++) {
+                        FileRecord fileRecord = storedFiles.get(i);
+                        if (fileRecord.toString().toLowerCase().contains(constraint)) {
+                            filteredFiles.add(fileRecord);
+                        }
+                    }
+
+                    results.count = filteredFiles.size();
+                    results.values = filteredFiles;
+                }
+
+                return results;
+            }
+        };
     }
 }

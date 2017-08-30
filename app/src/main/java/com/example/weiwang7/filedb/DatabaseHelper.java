@@ -13,13 +13,9 @@ import java.util.ArrayList;
  */
 
 class DatabaseHelper extends SQLiteOpenHelper{
-    private String TAG=this.getClass().getSimpleName();
-
     private static final String DATABASE_NAME="file_db.db";
     private static final int DATABASE_VERSION=1;
-
     private static final String TABLE_FILE="file";
-
     private static final String KEY_FILE_NAME="file_name";
     private static final String KEY_FILE_EXTENSION="file_extension";
     private static final String KEY_MD5="md5";
@@ -27,10 +23,7 @@ class DatabaseHelper extends SQLiteOpenHelper{
     private static final String KEY_LENGTH="length";
     private static final String KEY_SIZE="size";
     private static final String KEY_KEYWORD="keyword";
-
-    private String CREATE_TABLE_CALL="CREATE TABLE IF NOT EXISTS " + TABLE_FILE + "(" + KEY_FILE_NAME + " TEXT," + KEY_FILE_EXTENSION + " TEXT,"
-            + KEY_MD5 + " TEXT," + KEY_POSITION + " TEXT," + KEY_LENGTH + " TEXT," + KEY_SIZE + " TEXT," + KEY_KEYWORD
-            + " TEXT" + ")";
+    private final String TAG = this.getClass().getSimpleName();
 
     DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,6 +31,9 @@ class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db){
+        String CREATE_TABLE_CALL = "CREATE TABLE IF NOT EXISTS " + TABLE_FILE + "(" + KEY_FILE_NAME + " TEXT," + KEY_FILE_EXTENSION + " TEXT,"
+                + KEY_MD5 + " TEXT," + KEY_POSITION + " TEXT," + KEY_LENGTH + " TEXT," + KEY_SIZE + " TEXT," + KEY_KEYWORD
+                + " TEXT" + ")";
         Log.v(TAG, "CREATE TABLE CALL: " + CREATE_TABLE_CALL);
         db.execSQL(CREATE_TABLE_CALL);
     }
