@@ -47,7 +47,7 @@ class MyAdapter extends BaseAdapter{
         TextView fileNameTextView = convertView.findViewById(R.id.tv_file_name);
         TextView fileExtensionTextView = convertView.findViewById(R.id.tv_file_extension);
         TextView md5TextView = convertView.findViewById(R.id.tv_md5);
-        TextView positionTextView = convertView.findViewById(R.id.tv_postion);
+        TextView positionTextView = convertView.findViewById(R.id.tv_position);
         TextView lengthTextView = convertView.findViewById(R.id.tv_length);
         TextView sizeTextView = convertView.findViewById(R.id.tv_size);
         TextView keywordTextView = convertView.findViewById(R.id.tv_keyword);
