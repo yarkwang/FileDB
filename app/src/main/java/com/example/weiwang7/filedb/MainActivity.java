@@ -1,6 +1,6 @@
 package com.example.weiwang7.filedb;
 
-import android.database.Cursor;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -40,11 +41,16 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                // Get the cursor, positioned to the corresponding row in the result set
-                Cursor cursor=(Cursor)listView.getItemAtPosition(position);
+//                String fileName=((TextView)view.findViewById(R.id.tv_file_name)).getText().toString().substring(11);
+//                String md5=((TextView)view.findViewById(R.id.tv_md5)).getText().toString().substring(5);
+//                Toast.makeText(getApplicationContext(), fileName+"_"+md5, Toast.LENGTH_SHORT).show();
+                String url = ((TextView) view.findViewById(R.id.tv_url)).getText().toString().substring(5);
+                Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
 
-                String fileName=cursor.getString(cursor.getColumnIndexOrThrow("KEY_FILE_NAME"));
-                Toast.makeText(getApplicationContext(), fileName, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Thumbnail.class);
+                intent.putExtra(Intent.EXTRA_TEXT, url);
+                startActivity(intent);
+                //startActivity(new Intent(getApplicationContext(), Thumbnail.class));
             }
         });
 

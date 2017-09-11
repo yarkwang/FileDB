@@ -8,4 +8,5 @@
     <string name="label_length">Length: %1$s</string>
     <string name="label_size">Size: %1$s</string>
     <string name="label_keyword">Keyword: %1$s</string>
+    <string name="label_url">URL: %1$s</string>
 </resources>

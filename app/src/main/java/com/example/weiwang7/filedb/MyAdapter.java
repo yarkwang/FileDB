@@ -55,6 +55,7 @@ class MyAdapter extends BaseAdapter implements Filterable {
         TextView lengthTextView = convertView.findViewById(R.id.tv_length);
         TextView sizeTextView = convertView.findViewById(R.id.tv_size);
         TextView keywordTextView = convertView.findViewById(R.id.tv_keyword);
+        TextView urlTextView = convertView.findViewById(R.id.tv_url);
 
         FileRecord fr = files.get(position);
         fileNameTextView.setText(context.getString(R.string.label_fileName, fr.getFile_name()));
@@ -64,6 +65,7 @@ class MyAdapter extends BaseAdapter implements Filterable {
         lengthTextView.setText(context.getString(R.string.label_length, fr.getLength()));
         sizeTextView.setText(context.getString(R.string.label_size, fr.getSize()));
         keywordTextView.setText(context.getString(R.string.label_keyword, fr.getKeyword()));
+        urlTextView.setText(context.getString(R.string.label_url, fr.getUrl()));
         return convertView;
     }
 

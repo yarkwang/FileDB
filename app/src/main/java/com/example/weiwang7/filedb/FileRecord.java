@@ -5,7 +5,7 @@ package com.example.weiwang7.filedb;
  */
 
 class FileRecord {
-    private String file_name, file_extension, md5, position, length, size, keyword;
+    private String file_name, file_extension, md5, position, length, size, keyword, url;
 
     String getFile_name() {
         return file_name;
@@ -66,5 +66,13 @@ class FileRecord {
     @Override
     public String toString() {
         return file_name + ", " + position + ", " + keyword;
+    }
+
+    String getUrl() {
+        return url;
+    }
+
+    void setUrl(String url) {
+        this.url = url;
     }
 }

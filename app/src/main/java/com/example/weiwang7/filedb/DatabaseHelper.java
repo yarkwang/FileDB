@@ -23,6 +23,7 @@ class DatabaseHelper extends SQLiteOpenHelper{
     private static final String KEY_LENGTH="length";
     private static final String KEY_SIZE="size";
     private static final String KEY_KEYWORD="keyword";
+    private static final String KEY_URL = "url";
     private final String TAG = this.getClass().getSimpleName();
 
     DatabaseHelper(Context context){
@@ -33,7 +34,7 @@ class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db){
         String CREATE_TABLE_CALL = "CREATE TABLE IF NOT EXISTS " + TABLE_FILE + "(" + KEY_FILE_NAME + " TEXT," + KEY_FILE_EXTENSION + " TEXT,"
                 + KEY_MD5 + " TEXT," + KEY_POSITION + " TEXT," + KEY_LENGTH + " TEXT," + KEY_SIZE + " TEXT," + KEY_KEYWORD
-                + " TEXT" + ")";
+                + " TEXT," + KEY_URL + " TEXT" + ")";
         Log.v(TAG, "CREATE TABLE CALL: " + CREATE_TABLE_CALL);
         db.execSQL(CREATE_TABLE_CALL);
     }
@@ -59,6 +60,7 @@ class DatabaseHelper extends SQLiteOpenHelper{
                 String length=c.getString(c.getColumnIndex(KEY_LENGTH));
                 String size=c.getString(c.getColumnIndex(KEY_SIZE));
                 String keyword=c.getString(c.getColumnIndex(KEY_KEYWORD));
+                String url = c.getString(c.getColumnIndex(KEY_URL));
 
                 FileRecord fileRecord=new FileRecord();
                 fileRecord.setFile_name(file_name);
@@ -68,6 +70,7 @@ class DatabaseHelper extends SQLiteOpenHelper{
                 fileRecord.setLength(length);
                 fileRecord.setSize(size);
                 fileRecord.setKeyword(keyword);
+                fileRecord.setUrl(url);
 
                 files.add(fileRecord);
             }
