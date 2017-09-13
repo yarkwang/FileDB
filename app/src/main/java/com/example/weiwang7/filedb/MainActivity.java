@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         String DB_NAME="file_db.db";
         try{
             InputStream inputStream=getResources().getAssets().open(DB_NAME);
+            //Toast.makeText(getApplicationContext(), getResources().getAssets().toString(), Toast.LENGTH_LONG).show();
 
             File dbFile=new File(DB_PATH);
             if(dbFile.mkdirs()){
